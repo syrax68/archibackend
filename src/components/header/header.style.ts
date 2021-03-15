@@ -12,6 +12,6 @@ export const CustomButton = styled(Button)`
 
 export const Title =styled(Typography)`
     flex-grow: 1;
-    text-align: inherit;
+    text-align: initial;
     margin-left: 10px !important;
 `
