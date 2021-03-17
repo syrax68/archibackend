@@ -4,6 +4,10 @@ import Typography from '@material-ui/core/Typography';
 
 export const CustomDiv = styled.div`
     flex-grow: 1;
+    a{
+        text-decoration: none;
+        color: #fff;
+    }
 `;
 
 export const CustomButton = styled(Button)`

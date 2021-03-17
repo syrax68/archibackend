@@ -8,7 +8,9 @@ import {
   CustomDiv,
   Title
 } from './header.style';
-
+import {
+  Link
+} from "react-router-dom";
 
 export default function ButtonAppBar() {
 
@@ -18,12 +20,14 @@ export default function ButtonAppBar() {
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu">
             <MenuIcon />
-          </IconButton>
+          </IconButton>   
           <Title variant="h6" >
+            <Link to="/">
             VIDEO CLUB
+            </Link>
           </Title>
-          <CustomButton color="inherit">se connecter / s'inscrire</CustomButton>
-          <CustomButton color="inherit">Mon compte</CustomButton>
+          <CustomButton color="inherit"><Link to="/login">se connecter / s'inscrire</Link></CustomButton>
+          <CustomButton color="inherit"><Link to="/compte">Mon compte</Link></CustomButton>
         </Toolbar>
       </AppBar>
     </CustomDiv>
