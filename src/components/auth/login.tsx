@@ -68,7 +68,7 @@ const Login = () => {
                         <CustomWrapper>
                             <LoginBody>
                                 <LoginBox>
-                                <h2>Sign In</h2>
+                                <h2>Connexion</h2>
                                 <CardContent
                                     className="content"
                                 >
@@ -126,7 +126,7 @@ const Login = () => {
                                                 disabled={isSubmitting}
                                                 type="submit"
                                             >
-                                                Sign in
+                                                Se connecter
                                             </Button>
                                         </Grid>
                                     </Grid>
