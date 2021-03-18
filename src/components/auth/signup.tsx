@@ -228,7 +228,7 @@ const Signup = () => {
                                                 color="secondary"
                                                 type="submit"
                                             >
-                                                {checkedAbonne?"Choisir Abonnement":"S'inscrire"}
+                                                {checkedAbonne?"Choisir un Abonnement":"S'inscrire"}
                                             </Button>   
                                         </Grid>
                                     </Grid>
