@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import wait from '../../helpers/wait';
@@ -7,24 +7,25 @@ import {
     Grid,
     Button
 } from '@material-ui/core';
-import {
-    Link
-} from "react-router-dom";
-
 import{
     CustomTextField,
     CustomWrapper,
     LoginBody,
     LoginBox
 }from './login.style';
+import Checkbox from '@material-ui/core/Checkbox';
 
 
+const Signup = () => {
+    const [checked, setChecked] = React.useState(false);
 
-const Login = () => {
-    
-    return (
+    const change = (event) => {
+        setChecked(event.target.checked);
+    };
+    return(
         <>
-            <Formik
+        
+        <Formik
                 enableReinitialize
                 initialValues={{
                    email: '',
@@ -68,7 +69,7 @@ const Login = () => {
                         <CustomWrapper>
                             <LoginBody>
                                 <LoginBox>
-                                <h2>Connexion</h2>
+                                <h2>Creation Compte</h2>
                                 <CardContent
                                     className="content"
                                 >
@@ -77,6 +78,7 @@ const Login = () => {
                                         spacing={2}
                                         className="container"
                                     >
+                                        <p>Entrer E-mail : </p>
                                         <Grid
                                             item
                                             md={12}
@@ -95,6 +97,7 @@ const Login = () => {
                                                 variant="outlined"
                                             />
                                         </Grid>
+                                        <p>Enter votre mot de passe :</p>
                                         <Grid
                                             item
                                             md={12}
@@ -113,7 +116,36 @@ const Login = () => {
                                                 required
                                                 variant="outlined"
                                             />
+                                        
                                         </Grid>
+                                        <p>Confirmation mot de passe :</p>
+                                        <Grid
+                                            item
+                                            md={12}
+                                            xs={12}
+                                        >
+                                            <CustomTextField
+                                                error={Boolean(touched.password && errors.password)}
+                                                helperText={touched.password && errors.password}
+                                                type="password"
+                                                onBlur={handleBlur}
+                                                onChange={handleChange}
+                                                // value={values.password}
+                                                fullWidth
+                                                label="Password"
+                                                name="reMakepassword"
+                                                required
+                                                variant="outlined"
+                                            />
+                                        
+                                        </Grid>
+                                        <Checkbox
+                                            checked={checked}
+                                            onChange={change}
+                                            color="primary"
+                                            name="s'abonner"
+                                        />
+                                        <p>j'accepte les termes et conditions</p>
                                         <Grid
                                             item
                                             md={12}
@@ -126,7 +158,7 @@ const Login = () => {
                                                 disabled={isSubmitting}
                                                 type="submit"
                                             >
-                                                Se connecter
+                                                Suivant
                                             </Button>
                                         </Grid>
                                     </Grid>
@@ -134,16 +166,7 @@ const Login = () => {
                                         container
                                         spacing={1}
                                         className="container"
-                                    >
-                                        <Grid
-                                            item
-                                            md={12}
-                                            xs={12}
-                                        >
-                                            <div className="sign_up">
-                                                <p style={{color: "#fff"}}>Nouveau compte? <Link to="/signup">S'inscrire maintenant.</Link></p>
-                                            </div>
-                                        </Grid>
+                                    >    
                                     </Grid>
                                 </CardContent>
                             </LoginBox>
@@ -155,5 +178,4 @@ const Login = () => {
         </>
     )
 }
-
-export default Login
+export default Signup
