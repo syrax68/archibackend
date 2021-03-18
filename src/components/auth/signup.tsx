@@ -11,29 +11,52 @@ import{
     CustomTextField,
     CustomWrapper,
     LoginBody,
-    LoginBox
+    LoginBox,
 }from './login.style';
 import Checkbox from '@material-ui/core/Checkbox';
+import Modal from '@material-ui/core/Modal';
+import {abonne} from './abonner';
 
 
 const Signup = () => {
-    const [checked, setChecked] = React.useState(false);
+    const [checked, setChecked] = useState(false);
+    const [checkedAbonne, setCheckedAbonne] = useState(false);
+    const [open, setOpen] = React.useState(false);
 
-    const change = (event) => {
-        setChecked(event.target.checked);
+    const handleOpen = () => {
+        setOpen(true);
     };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return(
         <>
-        
+        <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            style={{marginTop: "120px"}}
+        >
+            {abonne}
+        </Modal>
         <Formik
                 enableReinitialize
                 initialValues={{
-                   email: '',
-                   password:''
+                    firstname:'',
+                    lastname:'',
+                    email: '',
+                    password:'',
+                    reMakepassword:''
                 }}
                 validationSchema={Yup.object().shape({
+                    firstname: Yup.string().required('Merci de renseigner votre Nom'),
+                    lastname: Yup.string().required('Merci de renseigner votre Prénom'),
                     email: Yup.string().email('Merci de corriger votre Email').required('Merci de renseigner votre Email'),
                     password: Yup.string().min(5 , 'Your password must contain between 4 and 60 characters.').max(60,'Your password must contain between 4 and 60 characters.').required('Merci de renseigner votre mot de passe'),
+                    reMakepassword: Yup.string().min(5 , 'Your password must contain between 4 and 60 characters.').max(60,'Your password must contain between 4 and 60 characters.').required('Merci de renseigner votre mot de passe'),
                 })}
                 onSubmit={async (values, {
                     resetForm,
@@ -44,10 +67,14 @@ const Signup = () => {
                     try {
                         // NOTE: Make API request
                         await wait(200);
+                        if(checkedAbonne){
+                            handleOpen();
+                        }
+                        console.log(open)
                         resetForm();
                         setStatus({ success: true });
                         setSubmitting(false);
-                        console.log(values)
+                        
                     } catch (err) {
                         console.error(err);
                         setStatus({ success: false });
@@ -78,7 +105,42 @@ const Signup = () => {
                                         spacing={2}
                                         className="container"
                                     >
-                                        <p>Entrer E-mail : </p>
+                                        <Grid
+                                            item
+                                            md={12}
+                                            xs={12}
+                                        >
+                                            <CustomTextField
+                                                error={Boolean(touched.firstname && errors.firstname)}
+                                                helperText={touched.firstname && errors.firstname}
+                                                onBlur={handleBlur}
+                                                onChange={handleChange}
+                                                value={values.firstname}
+                                                fullWidth
+                                                label="Nom"
+                                                name="firstname"
+                                                required
+                                                variant="outlined"
+                                            />
+                                        </Grid>
+                                        <Grid
+                                            item
+                                            md={12}
+                                            xs={12}
+                                        >
+                                            <CustomTextField
+                                                error={Boolean(touched.lastname && errors.lastname)}
+                                                helperText={touched.lastname && errors.lastname}
+                                                onBlur={handleBlur}
+                                                onChange={handleChange}
+                                                value={values.lastname}
+                                                fullWidth
+                                                label="Prénom"
+                                                name="lastname"
+                                                required
+                                                variant="outlined"
+                                            />
+                                        </Grid>
                                         <Grid
                                             item
                                             md={12}
@@ -97,7 +159,6 @@ const Signup = () => {
                                                 variant="outlined"
                                             />
                                         </Grid>
-                                        <p>Enter votre mot de passe :</p>
                                         <Grid
                                             item
                                             md={12}
@@ -111,55 +172,64 @@ const Signup = () => {
                                                 onChange={handleChange}
                                                 value={values.password}
                                                 fullWidth
-                                                label="Password"
+                                                label="Enter votre mot de passe"
                                                 name="password"
                                                 required
                                                 variant="outlined"
                                             />
                                         
                                         </Grid>
-                                        <p>Confirmation mot de passe :</p>
                                         <Grid
                                             item
                                             md={12}
                                             xs={12}
                                         >
                                             <CustomTextField
-                                                error={Boolean(touched.password && errors.password)}
-                                                helperText={touched.password && errors.password}
+                                                error={Boolean(touched.reMakepassword && errors.reMakepassword)}
+                                                helperText={touched.reMakepassword && errors.reMakepassword}
                                                 type="password"
+                                                value={values.reMakepassword}
                                                 onBlur={handleBlur}
                                                 onChange={handleChange}
-                                                // value={values.password}
                                                 fullWidth
-                                                label="Password"
+                                                label="Confirmation mot de passe"
                                                 name="reMakepassword"
                                                 required
                                                 variant="outlined"
                                             />
                                         
                                         </Grid>
-                                        <Checkbox
-                                            checked={checked}
-                                            onChange={change}
-                                            color="primary"
-                                            name="s'abonner"
-                                        />
-                                        <p>j'accepte les termes et conditions</p>
+                                        <Grid container>
+                                            <Checkbox
+                                                checked={checkedAbonne}
+                                                onChange={e=>setCheckedAbonne(!checkedAbonne)}
+                                                color="primary"
+                                                name="s'abonner"
+                                            />
+                                            <p>S'abonner pour avoir des réductions?</p>
+                                        </Grid>
+                                        <Grid container>
+                                            <Checkbox
+                                                checked={checked}
+                                                onChange={e=>setChecked(!checked)}
+                                                color="primary"
+                                                name="s'abonner"
+                                            />
+                                            <p>j'accepte les termes et conditions</p>
+                                        </Grid>
                                         <Grid
                                             item
                                             md={12}
                                             xs={12}
-                                        >
+                                        >   
                                             <Button
                                                 fullWidth
                                                 variant="contained"
                                                 color="secondary"
-                                                disabled={isSubmitting}
                                                 type="submit"
                                             >
-                                                Suivant
-                                            </Button>
+                                                {checkedAbonne?"Choisir Abonnement":"S'inscrire"}
+                                            </Button>   
                                         </Grid>
                                     </Grid>
                                     <Grid

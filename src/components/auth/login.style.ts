@@ -30,7 +30,7 @@ export const CustomWrapper = styled.div`
 `;
 
 export const LoginBody = styled.div`
-    padding: 60px 68px 40px;
+    padding: 30px 68px 0px;
     position: relative;
     max-width: 450px;
     background: rgba(0, 0, 0, 0.75);
@@ -43,6 +43,12 @@ export const LoginBody = styled.div`
         margin-top: 0;
         margin-bottom: 20px;
     };
+    p{
+        color: #fff;
+    }
+    label{
+        color: #fff;
+    }
     input {
         height: 50px;
         width: 100%;
@@ -71,3 +77,35 @@ export const LoginBody = styled.div`
 export const LoginBox = styled.div`
     margin-bottom: 50px;
 `;
+
+export const DivModal = styled.div`
+    text-align: center; 
+    border-radius: 10px;
+    max-width: 600px;
+    background: white;
+    margin: auto;
+    padding: 20px;
+    &:focus{
+        outline: none;
+    }
+    h2{
+        font-weight: 100;
+        color:blue;
+    }
+`;
+
+export const DivItem = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    &>*{
+        margin: 20px;
+        width: 250px;
+        height: auto;
+    }
+    span{
+        font-size: xx-large;
+        font-weight: 800;
+        color:blue;
+    }
+`; 
+
