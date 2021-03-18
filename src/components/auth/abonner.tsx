@@ -21,7 +21,7 @@ export const abonne =
                                 Herald
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Vous bénéfissiez d'une réduction de <span>5%</span>
+                                Vous bénéficierez d'une réduction de <span>5%</span>
                             </Typography>
                         </CardContent>
                     </CardActionArea>
@@ -35,7 +35,7 @@ export const abonne =
                                 Guardian
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Vous bénéfissiez d'une réduction de <span>10%</span>
+                                Vous bénéficierez d'une réduction de <span>10%</span>
                             </Typography>
                         </CardContent>
                     </CardActionArea>
@@ -49,7 +49,7 @@ export const abonne =
                                 Crusader
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Vous bénéfissiez d'une réduction de <span>15%</span>
+                                Vous bénéficierez d'une réduction de <span>15%</span>
                             </Typography>
                         </CardContent>
                     </CardActionArea>
@@ -63,7 +63,7 @@ export const abonne =
                                 Archon
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Vous bénéfissiez d'une réduction de <span>20%</span>
+                                Vous bénéficierez d'une réduction de <span>20%</span>
                             </Typography>
                         </CardContent>
                     </CardActionArea>
