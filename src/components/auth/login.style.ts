@@ -30,7 +30,8 @@ export const CustomWrapper = styled.div`
 `;
 
 export const LoginBody = styled.div`
-    padding: 30px 68px 0px;
+    padding: 20px 68px 0px;
+    margin-top: 50px;
     position: relative;
     max-width: 450px;
     background: rgba(0, 0, 0, 0.75);
@@ -107,5 +108,5 @@ export const DivItem = styled.div`
         font-weight: 800;
         color:blue;
     }
-`; 
+`;
 
