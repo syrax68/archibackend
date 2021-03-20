@@ -11,28 +11,29 @@ import {
     Link
 } from "react-router-dom";
 
-import{
+import {
     CustomTextField,
     CustomWrapper,
     LoginBody,
     LoginBox
-}from './login.style';
-
+} from './login.style';
+import Header from '../header/header';
 
 
 const Login = () => {
-    
+
     return (
         <>
+            <Header />
             <Formik
                 enableReinitialize
                 initialValues={{
-                   email: '',
-                   password:''
+                    email: '',
+                    password: ''
                 }}
                 validationSchema={Yup.object().shape({
                     email: Yup.string().email('Merci de corriger votre Email').required('Merci de renseigner votre Email'),
-                    password: Yup.string().min(5 , 'Your password must contain between 4 and 60 characters.').max(60,'Your password must contain between 4 and 60 characters.').required('Merci de renseigner votre mot de passe'),
+                    password: Yup.string().min(5, 'Your password must contain between 4 and 60 characters.').max(60, 'Your password must contain between 4 and 60 characters.').required('Merci de renseigner votre mot de passe'),
                 })}
                 onSubmit={async (values, {
                     resetForm,
@@ -54,7 +55,7 @@ const Login = () => {
                         setSubmitting(false);
                     }
                 }}
-                >
+            >
                 {({
                     errors,
                     handleBlur,
@@ -68,89 +69,89 @@ const Login = () => {
                         <CustomWrapper>
                             <LoginBody>
                                 <LoginBox>
-                                <h2>Connexion</h2>
-                                <CardContent
-                                    className="content"
-                                >
-                                    <Grid
-                                        container
-                                        spacing={2}
-                                        className="container"
+                                    <h2>Connexion</h2>
+                                    <CardContent
+                                        className="content"
                                     >
                                         <Grid
-                                            item
-                                            md={12}
-                                            xs={12}
+                                            container
+                                            spacing={2}
+                                            className="container"
                                         >
-                                            <CustomTextField
-                                                error={Boolean(touched.email && errors.email)}
-                                                helperText={touched.email && errors.email}
-                                                onBlur={handleBlur}
-                                                onChange={handleChange}
-                                                value={values.email}
-                                                fullWidth
-                                                label="Email"
-                                                name="email"
-                                                required
-                                                variant="outlined"
-                                            />
-                                        </Grid>
-                                        <Grid
-                                            item
-                                            md={12}
-                                            xs={12}
-                                        >
-                                            <CustomTextField
-                                                error={Boolean(touched.password && errors.password)}
-                                                helperText={touched.password && errors.password}
-                                                type="password"
-                                                onBlur={handleBlur}
-                                                onChange={handleChange}
-                                                value={values.password}
-                                                fullWidth
-                                                label="Password"
-                                                name="password"
-                                                required
-                                                variant="outlined"
-                                            />
-                                        </Grid>
-                                        <Grid
-                                            item
-                                            md={12}
-                                            xs={12}
-                                        >
-                                            <Button
-                                                fullWidth
-                                                variant="contained"
-                                                color="secondary"
-                                                disabled={isSubmitting}
-                                                type="submit"
+                                            <Grid
+                                                item
+                                                md={12}
+                                                xs={12}
                                             >
-                                                Se connecter
+                                                <CustomTextField
+                                                    error={Boolean(touched.email && errors.email)}
+                                                    helperText={touched.email && errors.email}
+                                                    onBlur={handleBlur}
+                                                    onChange={handleChange}
+                                                    value={values.email}
+                                                    fullWidth
+                                                    label="Email"
+                                                    name="email"
+                                                    required
+                                                    variant="outlined"
+                                                />
+                                            </Grid>
+                                            <Grid
+                                                item
+                                                md={12}
+                                                xs={12}
+                                            >
+                                                <CustomTextField
+                                                    error={Boolean(touched.password && errors.password)}
+                                                    helperText={touched.password && errors.password}
+                                                    type="password"
+                                                    onBlur={handleBlur}
+                                                    onChange={handleChange}
+                                                    value={values.password}
+                                                    fullWidth
+                                                    label="Password"
+                                                    name="password"
+                                                    required
+                                                    variant="outlined"
+                                                />
+                                            </Grid>
+                                            <Grid
+                                                item
+                                                md={12}
+                                                xs={12}
+                                            >
+                                                <Button
+                                                    fullWidth
+                                                    variant="contained"
+                                                    color="secondary"
+                                                    disabled={isSubmitting}
+                                                    type="submit"
+                                                >
+                                                    Se connecter
                                             </Button>
+                                            </Grid>
                                         </Grid>
-                                    </Grid>
-                                    <Grid
-                                        container
-                                        spacing={1}
-                                        className="container"
-                                    >
                                         <Grid
-                                            item
-                                            md={12}
-                                            xs={12}
+                                            container
+                                            spacing={1}
+                                            className="container"
                                         >
-                                            <div className="sign_up">
-                                                <p style={{color: "#fff"}}>Nouveau compte? <Link to="/signup">S'inscrire maintenant.</Link></p>
-                                            </div>
+                                            <Grid
+                                                item
+                                                md={12}
+                                                xs={12}
+                                            >
+                                                <div className="sign_up">
+                                                    <p style={{ color: "#fff" }}>Nouveau compte? <Link to="/signup">S'inscrire maintenant.</Link></p>
+                                                </div>
+                                            </Grid>
                                         </Grid>
-                                    </Grid>
-                                </CardContent>
-                            </LoginBox>
-                        </LoginBody>
-                    </CustomWrapper> 
-                </form>
-            )}
+                                    </CardContent>
+                                </LoginBox>
+                            </LoginBody>
+                        </CustomWrapper>
+                    </form>
+                )}
             </Formik>
         </>
     )
